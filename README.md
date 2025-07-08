@@ -1,10 +1,19 @@
 # sb-chuck-norris-jokes
 Spring Boot app that gets Chuck Norris jokes from an external API
 
+# Create keystore
+```sh
+cd src/main/resources/
+rm keystore.p12
+keytool -genkey -alias mysslcert -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
+keytool -list -v -keystore keystore.p12
+```
+
 # Build and run
 ```sh
 mvn clean install
-java -jar target/chucknorris-0.3.0.jar
+export SERVER_SSL_KEY_STORE_PASSWORD=????????
+java -jar target/chucknorris-0.5.0.jar
 ```
 URLs
  * http://localhost:8181/swagger-ui/index.html

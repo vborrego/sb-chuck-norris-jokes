@@ -1,12 +1,16 @@
 server:
-  port: 8181
+  port: 8443
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-type: PKCS12
+    key-alias: mysslcert
 chucknorris:
   url: https://api.chucknorris.io/jokes/random
 springdoc:
   swagger-ui:
     enabled: true
-# http://localhost:8181/swagger-ui/index.html 
-# http://localhost:8181/v3/api-docs.yaml 
+# https://localhost:8443/swagger-ui/index.html 
+# https://localhost:8443/v3/api-docs.yaml 
 # https://docs.swagger.io/swagger-core/v2.0.0-RC3/apidocs/io/swagger/v3/oas/annotations/Operation.html
 spring:
   datasource:

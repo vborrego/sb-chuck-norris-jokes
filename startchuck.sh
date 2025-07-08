@@ -1,2 +1,2 @@
 #!/bin/sh
-nohup java -Dserver.port=8282 -jar chucknorris-0.3.0.jar >> chuck.log  &
+nohup java -jar chucknorris-0.5.0.jar  >> chuck.log  &
