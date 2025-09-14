@@ -26,3 +26,8 @@ target/
 *~
 keystore.p12
 .idea/
+
+.classpath
+.project
+.settings/
+
