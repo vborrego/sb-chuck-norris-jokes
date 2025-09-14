@@ -16,9 +16,9 @@ export SERVER_SSL_KEY_STORE_PASSWORD=????????
 java -jar target/chucknorris-0.5.0.jar
 ```
 URLs
- * http://localhost:8181/swagger-ui/index.html
- * http://localhost:8181/?name=Vitor
- * http://localhost:8181/hello.txt
+ * https://localhost:8443/swagger-ui/index.html
+ * https://localhost:8443/
+ * https://localhost:8443/hello.txt
 
 ```sh
 cd src/main/webapp
