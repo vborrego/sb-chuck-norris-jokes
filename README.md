@@ -5,7 +5,7 @@ Spring Boot app that gets Chuck Norris jokes from an external API
 ```sh
 cd src/main/resources/
 rm keystore.p12
-keytool -genkey -alias mysslcert -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
+keytool -genkey -alias mysslcert -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650  -dname "cn=name, ou=group, o=company, c=country"
 keytool -list -v -keystore keystore.p12
 ```
 
@@ -13,7 +13,7 @@ keytool -list -v -keystore keystore.p12
 ```sh
 mvn clean install
 export SERVER_SSL_KEY_STORE_PASSWORD=????????
-java -jar target/chucknorris-0.5.0.jar
+java -jar target/chucknorris-0.5.1.jar
 ```
 URLs
  * https://localhost:8443/swagger-ui/index.html

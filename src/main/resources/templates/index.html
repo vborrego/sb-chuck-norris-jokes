@@ -2,38 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title th:text="${title}"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="/jquery-3.7.1.min.js"></script>
-    <script src="/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/bootstrap-5.3.3-dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/app.css" />
+<title th:text="${title}" /></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="/jquery-3.7.1.min.js"></script>
+<script src="/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="/bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/app.css" />
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark navbar-fixed-top navbar-expand">
-        <a class="navbar-brand active title-brand" href="#" th:text="${title}"  />
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto" id="nav-items">
-                <li class="nav-item" style="display:block;" id="menuSwagger">
-                    <a class="nav-link" href="/swagger-ui/index.html">Swagger</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container">
-        <div class="row">
-            <div class="col-l-2"></div>
-            <div class="col-l-8" id="app">
-                <p style="display:none;" th:text="'Hello, ' + ${name} + '!'" />
-                <p class="joke" id="joke" th:text="${joke}" />
-                <input class="btn btn-primary btn-block get-joke-button" type="submit" value="Get new joke"/>
-            </div>
-            <div class="col-l-2"></div>
-        </div>
-    </div>
-    <script src="app.js"></script>
+	<nav class="navbar navbar-dark bg-dark navbar-fixed-top navbar-expand">
+		<a class="navbar-brand active title-brand" href="#" th:text="${title}" /></a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto" id="nav-items">
+				<li class="nav-item" style="display: block;" id="menuSwagger">
+					<a class="nav-link" href="/swagger-ui/index.html">Swagger</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-l-2"></div>
+			<div class="col-l-8" id="app">
+				<p style="display: none;" th:text="'Hello, ' + ${name} + '!'" />
+				<p class="joke" id="joke" th:text="${joke}" />
+				<input class="btn btn-primary btn-block get-joke-button"
+					type="submit" value="Get new joke" />
+			</div>
+			<div class="col-l-2"></div>
+		</div>
+	</div>
+	<script src="app.js"></script>
 </body>
 
 </html>
