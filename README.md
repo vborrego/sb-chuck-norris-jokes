@@ -26,3 +26,39 @@ wget https://github.com/twbs/bootstrap/releases/download/v5.3.3/bootstrap-5.3.3-
 wget https://code.jquery.com/jquery-3.7.1.min.js
 unzip bootstrap-*zip
 ```
+
+# Add postgresql support 
+## Add dependency in pom.xml
+```xml
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+</dependency>
+```
+
+## Create user and DB in postgresql
+```sh
+psql -U postgres
+create user userx with login password '????????';
+create database dbx;
+grant all privileges on database dbx to userx;
+\c dbx
+grant all on schema public to userx;
+\l
+\q
+
+```
+
+## Update application.yaml
+```yaml
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dbx
+    username: userx
+    password: ????????
+  jpa:
+    hibernate:
+      ddl-auto: update
+  database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+``` 
