@@ -1,6 +1,7 @@
 package com.mooo.bitarus.chucknorris;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.slf4j.Logger;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 @ComponentScan // scans for @Component beans
 @EnableAutoConfiguration
+@SpringBootApplication(scanBasePackages = "com.mooo.bitarus.chucknorris")
 public class Application {
 	private static Logger logger;
 

@@ -14,7 +14,14 @@ springdoc:
 # https://docs.swagger.io/swagger-core/v2.0.0-RC3/apidocs/io/swagger/v3/oas/annotations/Operation.html
 spring:
   datasource:
-    url: jdbc:hsqldb:mem:mydb
+#    url: jdbc:hsqldb:mem:mydb
+#    username: sa
+#    password: sa
+    url: jdbc:postgresql://localhost:5432/mydb
     username: sa
     password: sa
+  jpa:
+    hibernate:
+      ddl-auto: update
+  database-platform: org.hibernate.dialect.PostgreSQLDialect
 

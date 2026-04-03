@@ -4,7 +4,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
 
+
+@NamedQuery(name = "JokeEntity.countJokes", query = "SELECT COUNT(j) FROM JokeEntity j")
+@NamedQuery(name = "JokeEntity.findByIdValue", query = "SELECT j FROM JokeEntity j WHERE j.id = :id")
 @Entity
 public class JokeEntity {
 	@Id

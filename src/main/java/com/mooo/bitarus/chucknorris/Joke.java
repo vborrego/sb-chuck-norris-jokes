@@ -1,7 +1,5 @@
 package com.mooo.bitarus.chucknorris;
 
-// import com.fasterxml.jackson.annotation.JsonProperty
-// @JsonProperty("propInJSON")
 public class Joke {
 	private String[] categories;
 	private String created_at;
@@ -44,11 +42,11 @@ public class Joke {
 	}
 
 	public void setCreated_at(String createdAt) {
-		this.created_at = created_at;
+		this.created_at = createdAt;
 	}
 
 	public void setIcon_url(String iconUrl) {
-		this.icon_url = icon_url;
+		this.icon_url = iconUrl;
 	}
 
 	public void setId(String id) {
@@ -56,7 +54,7 @@ public class Joke {
 	}
 
 	public void setUpdated_at(String updatedAt) {
-		this.updated_at = updated_at;
+		this.updated_at = updatedAt;
 	}
 
 	public void setUrl(String url) {

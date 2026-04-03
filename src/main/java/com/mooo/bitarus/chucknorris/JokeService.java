@@ -1,40 +1,38 @@
 package com.mooo.bitarus.chucknorris;
 
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Pageable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Component
 public class JokeService {
 	private final Logger logger = LoggerFactory.getLogger(JokeService.class);
-	// private ObjectMapper objectMapper;
 	private JokeRepository repo;
-	private JPAQueryFactory queryFactory;
-	private WebClient client;
-	private Joke responseJoke;
+	private WebClient webClient;
 
 	public JokeService(@Value("${chucknorris.url}") String chuckNorrisURL, JokeRepository repo,
-			JPAQueryFactory queryFactory, JokeMapper jokeMapper) {
+			JokeMapper jokeMapper) {
 		logger.info("JokeService created");
 		logger.info("chuckNorris URL {}", chuckNorrisURL);
-		// this.objectMapper = new ObjectMapper();
 		this.repo = repo;
-		this.queryFactory = queryFactory;
-		this.client = WebClient.create(chuckNorrisURL);
+		this.webClient = WebClient.create(chuckNorrisURL);
 	}
 
+	@Transactional
 	public Joke getJoke() {
 		Joke joke = null;
 
 		try {
-			joke = this.client.get().retrieve().bodyToMono(Joke.class).toFuture().get();
+			joke = this.webClient.get().retrieve().bodyToMono(Joke.class).toFuture().get();
 		} catch (Exception ex) {
 		}
 
@@ -51,17 +49,31 @@ public class JokeService {
 		return joke;
 	}
 
-	public List<JokeProjection> getSavedJokes() {
-		QJokeEntity jokeEntity = QJokeEntity.jokeEntity;
-		return queryFactory.select(new QJokeProjection(jokeEntity.id, jokeEntity.joke)).from(jokeEntity).fetch();
+	public List<JokeResponse> getSavedJokes() {
+		var jokes = new ArrayList<JokeResponse>();
+		repo.findAll().forEach(item -> {
+			var jokeText = new JokeResponse(item.getJoke());
+			jokes.add(jokeText);
+		});
+		return jokes;
 	}
 
-	public JokeProjection getSavedJokeById(Long jokeId) {
-		QJokeEntity jokeEntity = QJokeEntity.jokeEntity;
-		List<JokeProjection> ret = queryFactory.select(new QJokeProjection(jokeEntity.id, jokeEntity.joke))
-				.from(jokeEntity).where(jokeEntity.id.eq(jokeId)).fetch();
-		if (ret.size() > 0)
-			return ret.get(0);
-		return null;
+	public int countJokes() {
+		return repo.countJokes();
+	}
+
+	public List<Long> getIds(Pageable pageable) {
+		return repo.getIds(pageable);
+	}
+
+	public JokeResponse getSavedJokeById(Long jokeId) {
+		var jokeResponse = new JokeResponse();
+		var res = repo.findByIdValue(jokeId);
+
+		if (res.size() > 0) {
+			var entity = repo.findByIdValue(jokeId).getFirst();
+			jokeResponse = new JokeResponse(entity.getJoke());
+		}
+		return jokeResponse;
 	}
 }
