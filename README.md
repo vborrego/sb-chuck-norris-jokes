@@ -13,7 +13,7 @@ keytool -list -v -keystore keystore.p12
 ```sh
 mvn clean install
 export SERVER_SSL_KEY_STORE_PASSWORD=????????
-java -jar target/chucknorris-0.5.2.jar
+java -jar target/chucknorris-0.5.3.jar
 ```
 
 URLs
