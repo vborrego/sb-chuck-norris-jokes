@@ -97,3 +97,22 @@ exit
     ]
 }
 ```
+
+# Docker steps
+```shell
+# cleanup
+docker stop postgres-server sb-chuck-norris-jokes-container
+docker network rm chuck-norris-net
+# create
+docker network create chuck-norris-net
+docker run -p 5432:5432 --rm --name postgres-server -e POSTGRES_PASSWORD=postgres --network chuck-norris-net -d postgres:18-alpine
+docker cp setup.sql  postgres-server:/setup.sql
+docker exec -it postgres-server psql -U postgres -d postgres -f /setup.sql
+
+docker build -t sb-chuck-norris-jokes .
+docker run -d -p 8443:8443 -it --rm --network chuck-norris-net --name sb-chuck-norris-jokes-container sb-chuck-norris-jokes
+docker logs sb-chuck-norris-jokes-container
+curl https://localhost:8443 -k
+docker exec -it sb-chuck-norris-jokes-container bash
+
+```
